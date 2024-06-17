@@ -30,7 +30,7 @@ fi
 
 # change the source of apt
 echo "change the source of apt..."
-echo $apt_source > /etc/apt/sources.list
+echo "$apt_source" | sudo tee /etc/apt/sources.list
 
 # update apt
 sudo apt update
@@ -61,12 +61,12 @@ git clone https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppucc
 # clone the dotfiles(.zshrc, .tmux.conf)
 cd ~
 git clone https://github.com/Rina8475/dotfiles.git
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 source ~/.zshrc
 
 # install other useful tools
-sudo apt install -y tldr shellcheck 
+sudo apt install -y tldr shellcheck
 tldr --update  #! this command may fail, but it's ok, user can update later
 
 # configure git
