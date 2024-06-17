@@ -107,13 +107,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 set -o vi
-# opam configuration
-[[ ! -r /home/rina/.opam/opam-init/init.zsh ]] || source /home/rina/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 # the configure of fzf
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 # the configure of bat
 alias cat='batcat'
-#the configure of nvim
-export PATH="$PATH:/opt/nvim-linux64/bin"
 
