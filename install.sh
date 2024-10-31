@@ -14,10 +14,10 @@ fi
 
 case $version in
     20.04)
-        apt_source=$(cat Ubunut-20.source)
+        apt_source=$(cat Ubuntu-22.source)
         ;;
     22.04)
-        apt_source=$(cat Ubunut-22.source)
+        apt_source=$(cat Ubuntu-22.source)
         ;;
     *)
         echo "This scripts is only for Ubuntu 20.04 and 22.04."
@@ -48,14 +48,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # install zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# install fzf
-echo "install fzf..."
-sudo apt install -y fzf
-
-# install batcat
-echo "install batcat..."
-sudo apt install -y bat
-
 # configure tmux
 git clone https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin
 
@@ -72,7 +64,11 @@ ln -sf ~/.dotfiles/vimrc ~/.vim_runtime/my_configs.vim
 source ~/.zshrc
 
 # install other useful tools
-sudo apt install -y tldr shellcheck
+echo "install fzf, batcat, shellcheck..."
+sudo apt install -y fzf batcat shellcheck
+
+echo "install tldr..."
+sudo python3 -m pip install tldr
 tldr --update  #! this command may fail, but it's ok, user can update later
 
 # install golang version v1.23.2
@@ -94,5 +90,13 @@ git config --global color.interactive auto
 git config --global color.status auto
 git config --global color.grep auto
 git config --global alias.lol "log --graph --oneline --decorate --color --all"
+
+# set sudo without password
+echo "set sudo without password..."
+tail=$(sudo tail -1 /etc/sudoers)
+line="$(whoami) ALL=(ALL) NOPASSWD: ALL"
+if [ "$line" != "$tail" ]; then
+    echo $line | sudo tee -a /etc/sudoers
+fi
 
 echo "Done!"
