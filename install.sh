@@ -66,7 +66,6 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 # clone the dotfiles(.zshrc, .tmux.conf, vimrc)
 cd ~
-git clone https://github.com/Rina8475/dotfiles.git
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/vimrc ~/.vim_runtime/my_configs.vim
@@ -79,7 +78,7 @@ tldr --update  #! this command may fail, but it's ok, user can update later
 # install golang version v1.23.2
 echo "install golang..."
 cd ~
-wget https://dl.google.com/go/go1.23.2.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.23.2.linux-amd64.tar.gz -O go1.23.2.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.2.linux-amd64.tar.gz
 echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
 source ~/.zshrc
